@@ -19,6 +19,10 @@ public:
 
 	void addToEnd();
 
+	void addToBeginning();
+
+	bool addIndex(uint index);
+
 private:
 
 	uint listLength;

@@ -41,4 +41,44 @@ void LinkedList::addToEnd()
 		tail->setNext(newNode);
 		tail = newNode;
 	}
+	listLength++;
+}
+
+void LinkedList::addToBeginning()
+{
+	if (listLength == 0)
+	{
+		createFirst();
+	}
+	else
+	{
+		ListNode* newNode = new ListNode();
+		head->setPrevious(newNode);
+		head = newNode;
+	}
+	listLength++;
+}
+
+bool LinkedList::addIndex(uint index)
+{
+	if (index >= listLength)
+		return false;
+
+	//Go to position in list
+	ListNode* previous = head;
+	for (size_t i = 0; i < index; i++)
+	{
+		previous = previous->getNext();
+	}
+
+	//Create new node
+	ListNode* newNode = new ListNode();
+	newNode->setPrevious(previous);
+	newNode->setNext(previous->getNext());
+
+	//Set pointers to new node
+	previous->setNext(newNode);
+	newNode->getNext()->setPrevious(newNode);
+
+	return true;
 }
