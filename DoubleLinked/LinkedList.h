@@ -17,9 +17,14 @@ public:
 	ListNode* getHead() { return head; };
 	ListNode* getTail() { return tail; };
 
+	void addToEnd();
+
 private:
+
 	uint listLength;
 	ListNode* head;
 	ListNode* tail;
+
+	void createFirst();
 };
 
