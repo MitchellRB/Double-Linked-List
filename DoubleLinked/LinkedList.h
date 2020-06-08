@@ -14,6 +14,9 @@ public:
 
 	uint length() { return listLength; };
 
+	ListNode* getHead() { return head; };
+	ListNode* getTail() { return tail; };
+
 private:
 	uint listLength;
 	ListNode* head;

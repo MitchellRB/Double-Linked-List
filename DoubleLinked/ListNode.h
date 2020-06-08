@@ -8,6 +8,7 @@ class ListNode
 public:
 
 	ListNode();
+	ListNode(ListNode* _previous, ListNode* _next);
 	~ListNode();
 
 	int getData() { return data; };
