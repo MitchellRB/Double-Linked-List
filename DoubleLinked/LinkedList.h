@@ -17,11 +17,17 @@ public:
 	ListNode* getHead() { return head; };
 	ListNode* getTail() { return tail; };
 
+	ListNode* getPtrFromIndex(uint index);
+
+	bool isEmpty() { return (listLength == 0); };
+
 	void addToEnd();
 
 	void addToBeginning();
 
 	bool addIndex(uint index);
+
+	bool remove(uint index);
 
 private:
 
