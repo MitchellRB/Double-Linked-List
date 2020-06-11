@@ -29,6 +29,7 @@ ListNode::~ListNode()
 		previous->next = next;
 }
 
+//Prints the node's data
 void ListNode::print()
 {
 	std::cout << data;

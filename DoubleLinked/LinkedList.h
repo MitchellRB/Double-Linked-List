@@ -36,6 +36,8 @@ public:
 
 	void erase(ListNode* _target);
 
+	void remove(int _target);
+
 	ListNode* search(int _target);
 
 	void bubbleSort();

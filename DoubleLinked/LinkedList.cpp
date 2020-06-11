@@ -38,6 +38,7 @@ ListNode* LinkedList::getPtrFromIndex(uint index)
 	return node;
 }
 
+//Create the first node in an empty list
 ListNode* LinkedList::createFirst()
 {
 	ListNode* firstNode = new ListNode();
@@ -46,6 +47,7 @@ ListNode* LinkedList::createFirst()
 	return firstNode;
 }
 
+//Add a new node to the end
 ListNode* LinkedList::pushBack()
 {
 	ListNode* newNode;
@@ -64,6 +66,7 @@ ListNode* LinkedList::pushBack()
 	return newNode;
 }
 
+//Add a new node to the end with data
 ListNode* LinkedList::pushBack(int _data)
 {
 	ListNode* newNode = pushBack();
@@ -71,6 +74,7 @@ ListNode* LinkedList::pushBack(int _data)
 	return newNode;
 }
 
+//Add a new node to the front
 ListNode* LinkedList::pushFront()
 {
 	ListNode* newNode;
@@ -89,6 +93,7 @@ ListNode* LinkedList::pushFront()
 	return newNode;
 }
 
+//Add a new node to the fron with data
 ListNode* LinkedList::pushFront(int _data)
 {
 	ListNode* newNode = pushFront();
@@ -96,6 +101,7 @@ ListNode* LinkedList::pushFront(int _data)
 	return newNode;
 }
 
+//Insert a node before another node
 ListNode* LinkedList::insert(ListNode* _next)
 {
 	ListNode* newNode = new ListNode();
@@ -124,6 +130,7 @@ ListNode* LinkedList::insert(ListNode* _next)
 	return newNode;
 }
 
+//Insert a node with data before another node
 ListNode* LinkedList::insert(ListNode* _next, int _data)
 {
 	ListNode* newNode = insert(_next);
@@ -145,6 +152,7 @@ void LinkedList::popFront()
 	listLength--;
 }
 
+//Removes a node from the list
 void LinkedList::erase(ListNode* _target)
 {
 	if (_target == head)
@@ -166,6 +174,14 @@ void LinkedList::erase(ListNode* _target)
 	}
 }
 
+//Removes all nodes with the target data
+void LinkedList::remove(int _target)
+{
+	while (search(_target))
+		erase(search(_target));
+}
+
+//Returns the first instance of a value in the list
 ListNode* LinkedList::search(int _target)
 {
 	ListNode* iter = head;
@@ -186,6 +202,7 @@ ListNode* LinkedList::search(int _target)
 	return nullptr;
 }
 
+//Sort all nodes into ascending order
 void LinkedList::bubbleSort()
 {
 	//Not enough elements to sort
@@ -208,8 +225,6 @@ void LinkedList::bubbleSort()
 			{
 				swap(ptr, ptr->getNext());
 				swapped = true;
-				printAll();
-				std::cout << std::endl;
 			}
 			ptr = ptr->getNext();
 		}
@@ -217,6 +232,7 @@ void LinkedList::bubbleSort()
 	} while (swapped);
 }
 
+//Swap the data of two nodes
 void LinkedList::swap(ListNode* a, ListNode* b)
 {
 	int t = a->getData();
@@ -224,6 +240,7 @@ void LinkedList::swap(ListNode* a, ListNode* b)
 	b->setData(t);
 }
 
+//Print the value of all nodes
 void LinkedList::printAll()
 {
 
