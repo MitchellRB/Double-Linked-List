@@ -7,11 +7,9 @@ int main()
 {
     LinkedList list;
 
-    list.pushBack();
+    list.pushBack(50);
 
-    list.insert(list.getHead());
-
-    list.erase(list.getHead());
+    list.search(50)->print();
 
     return 0;
 }

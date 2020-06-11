@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 class ListNode
 {
@@ -17,6 +18,8 @@ public:
 
 	void setPrevious(ListNode* ptr) { previous = ptr; };
 	void setNext(ListNode* ptr) { next = ptr; };
+
+	void print();
 
 private:
 

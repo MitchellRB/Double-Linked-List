@@ -21,13 +21,14 @@ public:
 
 	bool isEmpty() { return (listLength == 0); };
 
-	void pushBack();
-	void pushBack(int _data);
+	ListNode* pushBack();
+	ListNode* pushBack(int _data);
 
-	void pushFront();
-	void pushFront(int _data);
+	ListNode* pushFront();
+	ListNode* pushFront(int _data);
 
-	void insert(ListNode* _next);
+	ListNode* insert(ListNode* _next);
+	ListNode* insert(ListNode* _next, int _data);
 
 	void popFront();
 
@@ -35,13 +36,13 @@ public:
 
 	void erase(ListNode* _target);
 
+	ListNode* search(int _target);
+
 private:
 
 	uint listLength;
 	ListNode* head;
 	ListNode* tail;
 
-	void createFirst();
-	void createFirst(int _data);
+	ListNode* createFirst();
 };
-

@@ -28,3 +28,8 @@ ListNode::~ListNode()
 	if (previous != nullptr)
 		previous->next = next;
 }
+
+void ListNode::print()
+{
+	std::cout << data;
+}

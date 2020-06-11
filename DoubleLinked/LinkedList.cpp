@@ -38,81 +38,65 @@ ListNode* LinkedList::getPtrFromIndex(uint index)
 	return node;
 }
 
-void LinkedList::createFirst()
+ListNode* LinkedList::createFirst()
 {
 	ListNode* firstNode = new ListNode();
 	head = firstNode;
 	tail = firstNode;
+	return firstNode;
 }
 
-void LinkedList::createFirst(int _data)
+ListNode* LinkedList::pushBack()
 {
-	ListNode* firstNode = new ListNode(_data, nullptr, nullptr);
-	head = firstNode;
-	tail = firstNode;
-}
-
-void LinkedList::pushBack()
-{
+	ListNode* newNode;
 	if (listLength == 0)
 	{
-		createFirst();
+		newNode = createFirst();
 	}
 	else
 	{
-		ListNode* newNode = new ListNode(tail, nullptr);
+		newNode = new ListNode(tail, nullptr);
 		tail->setNext(newNode);
 		tail = newNode;
 	}
 	listLength++;
+
+	return newNode;
 }
 
-void LinkedList::pushBack(int _data)
+ListNode* LinkedList::pushBack(int _data)
 {
+	ListNode* newNode = pushBack();
+	newNode->setData(_data);
+	return newNode;
+}
+
+ListNode* LinkedList::pushFront()
+{
+	ListNode* newNode;
 	if (listLength == 0)
 	{
-		createFirst();
+		newNode = createFirst();
 	}
 	else
 	{
-		ListNode* newNode = new ListNode(_data, tail, nullptr);
-		tail->setNext(newNode);
-		tail = newNode;
-	}
-	listLength++;
-}
-
-void LinkedList::pushFront()
-{
-	if (listLength == 0)
-	{
-		createFirst();
-	}
-	else
-	{
-		ListNode* newNode = new ListNode(nullptr, head);
+		newNode = new ListNode(nullptr, head);
 		head->setPrevious(newNode);
 		head = newNode;
 	}
 	listLength++;
+
+	return newNode;
 }
 
-void LinkedList::pushFront(int _data)
+ListNode* LinkedList::pushFront(int _data)
 {
-	if (listLength == 0)
-	{
-		createFirst();
-	}
-	else
-	{
-		ListNode* newNode = new ListNode(_data, nullptr, head);
-		head->setPrevious(newNode);
-		head = newNode;
-	}
-	listLength++;
+	ListNode* newNode = pushFront();
+	newNode->setData(_data);
+	return newNode;
 }
 
-void LinkedList::insert(ListNode* _next)
+ListNode* LinkedList::insert(ListNode* _next)
 {
 	ListNode* newNode = new ListNode();
 
@@ -136,6 +120,15 @@ void LinkedList::insert(ListNode* _next)
 	_next->setPrevious(newNode);
 
 	listLength++;
+
+	return newNode;
+}
+
+ListNode* LinkedList::insert(ListNode* _next, int _data)
+{
+	ListNode* newNode = insert(_next);
+	newNode->setData(_data);
+	return newNode;
 }
 
 void LinkedList::popBack()
@@ -170,4 +163,24 @@ void LinkedList::erase(ListNode* _target)
 	{
 		delete _target;
 	}
+}
+
+ListNode* LinkedList::search(int _target)
+{
+	ListNode* iter = head;
+	while (true)
+	{
+		if (iter->getData() == _target)
+		{
+			return iter;
+		}
+		else
+		{
+			if (iter->getNext() == nullptr)
+				break;
+			else
+				iter = iter->getNext();
+		}
+	}
+	return nullptr;
 }
