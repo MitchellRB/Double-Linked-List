@@ -138,6 +138,7 @@ ListNode* LinkedList::insert(ListNode* _next, int _data)
 	return newNode;
 }
 
+//Removes the last node in the list
 void LinkedList::popBack()
 {
 	tail = tail->getPrevious();
@@ -145,6 +146,7 @@ void LinkedList::popBack()
 	listLength--;
 }
 
+//Removes the first node in the list
 void LinkedList::popFront()
 {
 	head = head->getNext();
