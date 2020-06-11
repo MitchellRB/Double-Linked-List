@@ -38,6 +38,10 @@ public:
 
 	ListNode* search(int _target);
 
+	void bubbleSort();
+
+	void printAll();
+
 private:
 
 	uint listLength;
@@ -45,4 +49,6 @@ private:
 	ListNode* tail;
 
 	ListNode* createFirst();
+
+	void swap(ListNode* a, ListNode* b);
 };

@@ -162,6 +162,7 @@ void LinkedList::erase(ListNode* _target)
 	if (_target != nullptr)
 	{
 		delete _target;
+		listLength--;
 	}
 }
 
@@ -183,4 +184,55 @@ ListNode* LinkedList::search(int _target)
 		}
 	}
 	return nullptr;
+}
+
+void LinkedList::bubbleSort()
+{
+	//Not enough elements to sort
+	if (listLength < 2)
+		return;
+
+	bool swapped;
+	int i;
+	ListNode* ptr;
+	ListNode* endPtr = nullptr;
+
+	do
+	{
+		swapped = false;
+		ptr = head;
+
+		while (ptr->getNext() != endPtr)
+		{
+			if (ptr->getData() > ptr->getNext()->getData())
+			{
+				swap(ptr, ptr->getNext());
+				swapped = true;
+				printAll();
+				std::cout << std::endl;
+			}
+			ptr = ptr->getNext();
+		}
+		endPtr = ptr;
+	} while (swapped);
+}
+
+void LinkedList::swap(ListNode* a, ListNode* b)
+{
+	int t = a->getData();
+	a->setData(b->getData());
+	b->setData(t);
+}
+
+void LinkedList::printAll()
+{
+
+	ListNode* iter = head;
+	while (iter->getNext() != nullptr)
+	{
+		iter->print();
+		std::cout << ' ';
+		iter = iter->getNext();
+	}
+	tail->print();
 }

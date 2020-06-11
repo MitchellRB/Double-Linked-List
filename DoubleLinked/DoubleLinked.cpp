@@ -3,13 +3,27 @@
 #include <iostream>
 #include "LinkedList.h"
 
+#include <time.h>
+#include <random>
+
 int main()
 {
     LinkedList list;
 
-    list.pushBack(50);
+    srand(time(nullptr));
 
-    list.search(50)->print();
+    for (size_t i = 0; i < 10; i++)
+    {
+        list.pushBack(rand() % 100);
+    }
+
+    list.printAll();
+
+    std::cout << std::endl;
+
+    list.bubbleSort();
+
+    std::cin.get();
 
     return 0;
 }
