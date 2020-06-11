@@ -1,14 +1,12 @@
 #pragma once
 
-#include <random>
-#include <time.h>
-
 class ListNode
 {
 public:
 
 	ListNode();
 	ListNode(ListNode* _previous, ListNode* _next);
+	ListNode(int _data, ListNode* _previous, ListNode* _next);
 	~ListNode();
 
 	int getData() { return data; };

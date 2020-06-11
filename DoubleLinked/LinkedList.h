@@ -21,13 +21,19 @@ public:
 
 	bool isEmpty() { return (listLength == 0); };
 
-	void addToEnd();
+	void pushBack();
+	void pushBack(int _data);
 
-	void addToBeginning();
+	void pushFront();
+	void pushFront(int _data);
 
-	bool addIndex(uint index);
+	void insert(ListNode* _next);
 
-	bool remove(uint index);
+	void popFront();
+
+	void popBack();
+
+	void erase(ListNode* _target);
 
 private:
 
@@ -36,5 +42,6 @@ private:
 	ListNode* tail;
 
 	void createFirst();
+	void createFirst(int _data);
 };
 

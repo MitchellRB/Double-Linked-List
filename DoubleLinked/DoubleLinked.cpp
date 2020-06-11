@@ -5,7 +5,13 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    LinkedList list;
+
+    list.pushBack();
+
+    list.insert(list.getHead());
+
+    list.erase(list.getHead());
 
     return 0;
 }

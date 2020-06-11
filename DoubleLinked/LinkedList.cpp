@@ -10,7 +10,7 @@ LinkedList::LinkedList()
 LinkedList::~LinkedList()
 {
 	ListNode* next;
-	do
+	while (head != tail)
 	{
 		//Get the next node in the list
 		next = head->getNext();
@@ -18,8 +18,9 @@ LinkedList::~LinkedList()
 		delete head;
 		//Move to the next node
 		head = next;
-	} while (head != tail);
-	delete tail;
+	}
+	if (tail != nullptr)
+		delete tail;
 }
 
 ListNode* LinkedList::getPtrFromIndex(uint index)
@@ -39,12 +40,19 @@ ListNode* LinkedList::getPtrFromIndex(uint index)
 
 void LinkedList::createFirst()
 {
-		ListNode* firstNode = new ListNode();
-		head = firstNode;
-		tail = firstNode;
+	ListNode* firstNode = new ListNode();
+	head = firstNode;
+	tail = firstNode;
 }
 
-void LinkedList::addToEnd()
+void LinkedList::createFirst(int _data)
+{
+	ListNode* firstNode = new ListNode(_data, nullptr, nullptr);
+	head = firstNode;
+	tail = firstNode;
+}
+
+void LinkedList::pushBack()
 {
 	if (listLength == 0)
 	{
@@ -59,7 +67,22 @@ void LinkedList::addToEnd()
 	listLength++;
 }
 
-void LinkedList::addToBeginning()
+void LinkedList::pushBack(int _data)
+{
+	if (listLength == 0)
+	{
+		createFirst();
+	}
+	else
+	{
+		ListNode* newNode = new ListNode(_data, tail, nullptr);
+		tail->setNext(newNode);
+		tail = newNode;
+	}
+	listLength++;
+}
+
+void LinkedList::pushFront()
 {
 	if (listLength == 0)
 	{
@@ -74,37 +97,77 @@ void LinkedList::addToBeginning()
 	listLength++;
 }
 
-bool LinkedList::addIndex(uint index)
+void LinkedList::pushFront(int _data)
 {
-	if (index >= listLength)
-		return false;
-
-	//Go to position in list
-	ListNode* previous = getPtrFromIndex(index - 1);
-
-	//Create new node
-	ListNode* newNode = new ListNode();
-	newNode->setPrevious(previous);
-	newNode->setNext(previous->getNext());
-
-	//Set pointers to new node
-	previous->setNext(newNode);
-	newNode->getNext()->setPrevious(newNode);
-
+	if (listLength == 0)
+	{
+		createFirst();
+	}
+	else
+	{
+		ListNode* newNode = new ListNode(_data, nullptr, head);
+		head->setPrevious(newNode);
+		head = newNode;
+	}
 	listLength++;
-	return true;
 }
 
-bool LinkedList::remove(uint index)
+void LinkedList::insert(ListNode* _next)
 {
-	if (index >= listLength)
-		return false;
+	ListNode* newNode = new ListNode();
 
-	ListNode* target = getPtrFromIndex(index);
+	newNode->setNext(_next);
 
-	delete target;
+	if (_next != nullptr)
+	{
+		newNode->setPrevious(_next->getPrevious());
+	}
 
+	if (_next->getPrevious() != nullptr)
+	{
+		_next->getPrevious()->setNext(newNode);
+	}
+
+	if (head == _next)
+	{
+		head = newNode;
+	}
+
+	_next->setPrevious(newNode);
+
+	listLength++;
+}
+
+void LinkedList::popBack()
+{
+	tail = tail->getPrevious();
+	delete tail->getNext();
 	listLength--;
+}
 
-	return true;
+void LinkedList::popFront()
+{
+	head = head->getNext();
+	delete head->getPrevious();
+	listLength--;
+}
+
+void LinkedList::erase(ListNode* _target)
+{
+	if (_target == head)
+	{
+		popFront();
+		return;
+	}
+
+	if (_target == tail)
+	{
+		popBack();
+		return;
+	}
+
+	if (_target != nullptr)
+	{
+		delete _target;
+	}
 }
