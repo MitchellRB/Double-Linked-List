@@ -38,7 +38,9 @@ public:
 
 	void remove(int _target);
 
-	ListNode* search(int _target);
+	ListNode* searchFirst(int _target);
+
+	ListNode* searchLast(int _target);
 
 	void bubbleSort();
 

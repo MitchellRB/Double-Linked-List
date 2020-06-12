@@ -179,12 +179,12 @@ void LinkedList::erase(ListNode* _target)
 //Removes all nodes with the target data
 void LinkedList::remove(int _target)
 {
-	while (search(_target))
-		erase(search(_target));
+	while (searchFirst(_target))
+		erase(searchFirst(_target));
 }
 
 //Returns the first instance of a value in the list
-ListNode* LinkedList::search(int _target)
+ListNode* LinkedList::searchFirst(int _target)
 {
 	ListNode* iter = head;
 	while (true)
@@ -204,7 +204,29 @@ ListNode* LinkedList::search(int _target)
 	return nullptr;
 }
 
-//Sort all nodes into ascending order
+//Returns the last instance of a value in the list
+ListNode* LinkedList::searchLast(int _target)
+{
+	ListNode* iter = tail;
+	while (true)
+	{
+		if (iter->getData() == _target)
+		{
+			return iter;
+		}
+		else
+		{
+			if (iter->getPrevious() == nullptr)
+				break;
+			else
+				iter = iter->getPrevious();
+		}
+	}
+	return nullptr;
+}
+
+//Sort all nodes into ascending order using bubble sort
+//Sorts from both ends
 void LinkedList::bubbleSort()
 {
 	//Not enough elements to sort
@@ -212,9 +234,9 @@ void LinkedList::bubbleSort()
 		return;
 
 	bool swapped;
-	int i;
 	ListNode* ptr;
 	ListNode* endPtr = nullptr;
+	ListNode* startPtr = nullptr;
 
 	do
 	{
@@ -230,14 +252,30 @@ void LinkedList::bubbleSort()
 			}
 			ptr = ptr->getNext();
 		}
+
 		endPtr = ptr;
+
+		ptr = tail;
+
+		while (ptr->getPrevious() != startPtr)
+		{
+			if (ptr->getData() < ptr->getPrevious()->getData())
+			{
+				swap(ptr, ptr->getPrevious());
+				swapped = true;
+			}
+			ptr = ptr->getPrevious();
+		}
+
+		startPtr = ptr;
+
 	} while (swapped);
 }
 
 //Swap the data of two nodes
 void LinkedList::swap(ListNode* a, ListNode* b)
 {
-	int t = a->getData();
+	auto t = a->getData();
 	a->setData(b->getData());
 	b->setData(t);
 }
@@ -247,11 +285,10 @@ void LinkedList::printAll()
 {
 
 	ListNode* iter = head;
-	while (iter->getNext() != nullptr)
+	while (iter != nullptr)
 	{
 		iter->print();
 		std::cout << ' ';
 		iter = iter->getNext();
 	}
-	tail->print();
 }
