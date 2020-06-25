@@ -141,17 +141,36 @@ ListNode* LinkedList::insert(ListNode* _next, int _data)
 //Removes the last node in the list
 void LinkedList::popBack()
 {
-	tail = tail->getPrevious();
-	delete tail->getNext();
-	listLength--;
+	if (head == tail)
+	{
+		//List length 1 or 0
+		delete tail;
+		head = nullptr;
+		tail = nullptr;
+	}
+	else
+	{
+		tail = tail->getPrevious();
+		delete tail->getNext();
+		listLength--;
+	}
 }
 
 //Removes the first node in the list
 void LinkedList::popFront()
 {
-	head = head->getNext();
-	delete head->getPrevious();
-	listLength--;
+	if (head == tail)
+	{
+		delete head;
+		head = nullptr;
+		tail = nullptr;
+	}
+	else
+	{
+		head = head->getNext();
+		delete head->getPrevious();
+		listLength--;
+	}
 }
 
 //Removes a node from the list
