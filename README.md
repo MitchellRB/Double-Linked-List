@@ -20,7 +20,7 @@ Function|Effect
 
 ## Test app
 
-A test app alication is included in DoubleLinked.cpp
+A test app alication is included in DoubleLinked.cpp<br>
 Begins with 10 random values between 1 and 100
 
 Command list:
