@@ -35,5 +35,7 @@ insert | add value after an index
 pop_back | remove last value
 pop_front | remove first value
 remove | remove all instances of a value from the list
+find_first | shows the index of the first instance of a value in the list
+find_last | shows the index of the last instance of a value in the list
 help | show this list
 exit | close program

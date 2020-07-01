@@ -19,6 +19,8 @@ public:
 
 	ListNode* getPtrFromIndex(uint index);
 
+	int getIndexFromPtr(ListNode* node);
+
 	bool isEmpty() { return (listLength == 0); };
 
 	ListNode* pushBack();

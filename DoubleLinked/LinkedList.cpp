@@ -38,6 +38,22 @@ ListNode* LinkedList::getPtrFromIndex(uint index)
 	return node;
 }
 
+int LinkedList::getIndexFromPtr(ListNode* node)
+{
+	ListNode* current = head;
+	int index = 0;
+	while (current != node && current != tail)
+	{
+		current = current->getNext();
+		index++;
+	}
+	if (current == node)
+	{
+		return index;
+	}
+	return -1;
+}
+
 //Create the first node in an empty list
 ListNode* LinkedList::createFirst()
 {

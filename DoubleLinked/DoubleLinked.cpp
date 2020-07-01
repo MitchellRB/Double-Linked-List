@@ -89,6 +89,34 @@ int main()
             cin >> value;
             list.remove(value);
         }
+        else if (input == "find_first")
+        {
+            cout << "Enter value: ";
+            int value;
+            cin >> value;
+            //Get pointer to element
+            ListNode* first = list.searchFirst(value);
+            //Get index of element
+            if (first != nullptr)
+            {
+                int index = list.getIndexFromPtr(first);
+                cout << index << endl;
+            }
+        }
+        else if (input == "find_last")
+        {
+            cout << "Enter value: ";
+            int value;
+            cin >> value;
+            //Get pointer to element
+            ListNode* last = list.searchLast(value);
+            //Get index of element
+            if (last != nullptr)
+            {
+                int index = list.getIndexFromPtr(last);
+                cout << index << endl;
+            }
+        }
         else if (input == "help")
         {
             cout << "print - show all values\n";
@@ -100,6 +128,8 @@ int main()
             cout << "pop_back - remove last value\n";
             cout << "pop_front - remove first value\n";
             cout << "remove - remove all instances of a value from the list\n";
+            cout << "find_first - shows the index of the first instance of a value in the list\n";
+            cout << "find_last - shows the index of the last instance of a value in the list\n";
             cout << "help - show this list\n";
             cout << "exit - close program\n";
         }
